@@ -1,13 +1,13 @@
-import { useQuery } from '@apollo/client';
-import ClientRow from './ClientRow';
-import Spinner from './Spinner';
-import { GET_CLIENTS } from '../queries/clientQueries';
+import ClientRow from './ClientRow'
+import Spinner from './Spinner'
+import { GET_CLIENTS } from '../queries/clientQueries'
+import { useQuery } from '@apollo/client'
 
 export default function Clients() {
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const { loading, error, data } = useQuery(GET_CLIENTS)
 
-  if (loading) return <Spinner />;
-  if (error) return <p>Something Went Wrong</p>;
+  if (loading) return <Spinner />
+  if (error) return <p>Something Went Wrong</p>
 
   return (
     <>
@@ -29,5 +29,5 @@ export default function Clients() {
         </table>
       )}
     </>
-  );
+  )
 }
