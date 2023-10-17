@@ -16,5 +16,5 @@ export default function ProjectCard({ project }) {
           </div>
         </div>
       </div>
-    );
+    )
   }
