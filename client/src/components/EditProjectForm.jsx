@@ -1,38 +1,38 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { GET_PROJECT } from "../queries/projectQueries";
-import { UPDATE_PROJECT } from "../mutations/projectMutations";
+import { useState } from 'react'
+import { useMutation } from '@apollo/client'
+import { GET_PROJECT } from '../queries/projectQueries'
+import { UPDATE_PROJECT } from '../mutations/projectMutations'
 
 export default function EditProjectForm({ project }) {
-  const [name, setName] = useState(project.name);
-  const [description, setDescription] = useState(project.description);
+  const [name, setName] = useState(project.name)
+  const [description, setDescription] = useState(project.description)
   const [status, setStatus] = useState(() => {
     switch (project.status) {
-      case "Not Started":
-        return "new";
-      case "In Progress":
-        return "progress";
-      case "Completed":
-        return "completed";
+      case 'Not Started':
+        return 'new'
+      case 'In Progress':
+        return 'progress'
+      case 'Completed':
+        return 'completed';
       default:
-        throw new Error(`Unknown status: ${project.status}`);
+        throw new Error(`Unknown status: ${project.status}`)
     }
   });
 
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: { id: project.id, name, description, status },
     refetchQueries: [{ query: GET_PROJECT, variables: { id: project.id } }],
-  });
+  })
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (!name || !description || !status) {
-      return alert("Please fill out all fields");
+      return alert("Please fill out all fields")
     }
 
-    updateProject(name, description, status);
-  };
+    updateProject(name, description, status)
+  }
 
   return (
     <div className="mt-5">
@@ -76,5 +76,5 @@ export default function EditProjectForm({ project }) {
         </button>
       </form>
     </div>
-  );
+  )
 }
